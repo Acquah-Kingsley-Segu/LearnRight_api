@@ -1,11 +1,12 @@
-import NavLinks from "./NavLinks";
+import DashboardNavs from "./SubComponent/DashboardNavs";
 
 const Dashboard = () => {
   return (
-    <div className="bg-red-200 h-full">
-      <NavLinks/>
+    <div className="flex h-screen">
+      <DashboardNavs />
+      <main className="bg-green-400 flex-1">hi</main>
     </div>
-  )
-}
+  );
+};
 
 export default Dashboard;

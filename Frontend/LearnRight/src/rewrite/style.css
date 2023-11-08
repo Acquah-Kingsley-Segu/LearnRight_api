@@ -1,5 +1,5 @@
 /* Import Google font - Poppins */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -57,7 +57,7 @@ a {
 }
 
 /* Home */
-.home {
+/* .home {
   position: relative;
   height: 100vh;
   width: 100%;
@@ -81,7 +81,7 @@ a {
   pointer-events: auto;
 }
 /* From */
-.form_container {
+/* .form_container {
   position: fixed;
   max-width: 320px;
   width: 100%;
@@ -202,4 +202,4 @@ a {
   font-size: 12px;
   text-align: center;
   margin-top: 15px;
-}
+} */
