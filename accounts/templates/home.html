@@ -1,11 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Welcome</h1>
-</body>
-</html>
+{% extends '_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+<h1>Homepage</h1>
+<br>
+
+<div class="jumbotron">
+    <h1 class="display-4">File Service</h1>
+    {% if user.is_authenticated %}
+    <span>Hi {{ user.email }}!</span> <br>
+    <span>Your Username is:  {{ user.username }}!</span>
+    <br>
+    <a href="{% url 'update_username' user.pk %}">Change Username</a>
+    <a href="{% url 'user-details' user.pk %}">View Username</a>
+    {% endif %}
+    <p class="lead">Welcome to lizy's File Service...</p>
+    <p class="lead">
+        All you'll need is here...
+    </p>
+    <br>
+    {% if user.is_authenticated %}
+        <a class="btn btn-outline-primary" href="#">Browse files</a>
+    {% if user.is_staff %}
+        <a class="btn btn-outline-primary" href="#">Upload files</a>
+    {% endif %}
+        <a class="btn btn-outline-primary" href="{% url 'password_change' %}">Change password</a>
+    {% else %}
+        <a class="btn btn-outline-primary" href="{% url 'login' %}">Log in</a>
+        <a class="btn btn-outline-primary" href="{% url 'signup' %}">Sign up</a>
+        <a class="btn btn-outline-primary" href="{% url 'password_reset' %}">Reset password</a>
+    {% endif %}
+</div>
+
+{% endblock content %}
+

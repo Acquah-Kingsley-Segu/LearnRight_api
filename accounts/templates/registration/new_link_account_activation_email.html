@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> New Account Activation Link</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>New Account Verification Link</h2>
+        <p>Hello {{ user.email }},</p>
+        <p>Kindly take note that this is a new link the have been sent to you,</p>
+        <p>Please click on the link below to activate your account.</p>
+        <p>Kindly take note that this link will last for only one hour. </p>
+        <p><a href="{{activation_link}}" class="btn btn-primary">Activate my Account</a></p>
+        <p>Kind regards,</p>
+        <p>TeamMaxwell</p>
+    </div>
+</body>
+</html>
