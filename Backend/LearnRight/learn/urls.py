@@ -11,6 +11,8 @@ urlpatterns = [
     path('note/<int:pk>', NoteRetrieveUpdateDestroyView.as_view()),
     path('review_questions', ReviewQuestionListCreateView.as_view()),
     path('review_questions/<int:pk>', ReviewQuestionRetrieveUpdateDestroyView.as_view()),
+    path('space-practice', UserRepetitionView.as_view()),
+    path('quiz', QuizRecordView.as_view()),
 ]
 
 """ path('subject', SubjectListCreateView.as_view()),

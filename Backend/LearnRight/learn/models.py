@@ -38,3 +38,12 @@ class Note(models.Model):
 
 class ReviewQuestion(models.Model):
     question = models.CharField(max_length=255)
+
+
+class DurationTable(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    concept = models.ForeignKey(Concept, on_delete=models.CASCADE)
+    repeat_days = models.IntegerField()
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
+

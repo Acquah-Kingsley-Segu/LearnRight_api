@@ -1,9 +1,15 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import *
-from .serializers import *
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from datetime import datetime  # time configs
+from django.utils.timezone import utc
+from datetime import datetime, timedelta
+from django.utils import timezone
+import pytz
+from .models import *
+from .serializers import *
+
 
 # Create your views here.
 """ class SubjectListCreateView(generics.ListCreateAPIView):
@@ -179,3 +185,55 @@ class ReviewQuestionRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIV
     queryset = ReviewQuestion.objects.all()
     serializer_class = ReviewQuestion
 
+
+
+class UserRepetitionView(generics.ListAPIView):
+    serializer_class = DurationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # Filter the queryset based on the logged-in user
+        return DurationTable.objects.filter(user=self.request.user).values()
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+
+        # get current time in the user's timezone
+        user_now = 16 * 24
+
+        print(queryset, user_now)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({})
+
+class QuizRecordView(generics.CreateAPIView):
+    def create(self, request, *args, **kwargs):
+        repeated_days = 0
+        score = request.data["score"]
+
+        if score >= 0 and score < 25:
+            repeated_days = 7
+        elif score >= 25 and score < 50:
+            repeated_days = 14
+        elif score >= 50 and score < 75:
+            repeated_days = 21
+        else:
+            repeated_days = 31
+
+        space_practice = DurationTable.objects.filter(concept=request.data["concept"])
+        if len(space_practice) > 0:
+            space_practice[0].repeat_days = repeated_days
+            space_practice[0].save()
+        else:
+            serializer = DurationSerializer(data={"concept": request.data["concept"], "user": request.user.id, "repeat_days": repeated_days})
+            serializer.is_valid()
+            print(serializer.validated_data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response({"error": False, "message": "Quiz was recorded successfully"})
+            return Response({"error": True, "message": "Oops something went wrong"})
+            
+
+
+  

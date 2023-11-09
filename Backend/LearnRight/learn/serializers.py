@@ -35,3 +35,11 @@ class ReviewQuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = ReviewQuestion
         fields = '__all__'
+
+
+class DurationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DurationTable
+        fields = "__all__"
+
+        
