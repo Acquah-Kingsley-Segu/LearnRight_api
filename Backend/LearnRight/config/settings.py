@@ -40,21 +40,27 @@ INSTALLED_APPS = [
     'accounts',
     'learn',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken', 
+
+    # by max
+    "corsheaders",
+    "dj_rest_auth",
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        #"rest_framework.authentication.SessionAuthentication",
         'rest_framework.authentication.TokenAuthentication',
     ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ]
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ]
 }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    #"rest_framework.authentication.TokenAuthentication",  # for our browsable api
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

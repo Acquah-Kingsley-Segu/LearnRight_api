@@ -4,9 +4,21 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import generics
 from django.contrib.auth.models import User
+
+from rest_framework import status
+from rest_framework.views import APIView
+
 from .serializers import UserSerializer
 
 # Create your views here.
+
+class Logout(APIView):
+    def get(self, request, format=None):
+        # delelte the token for force login
+        request.user.auth_token.delete()
+        return Response({ "error": False, "message": "Logged out successfully"}, status=status.HTTP_200_OK)
+
+
 
 # Overriding rest_framework.authtoken.views.obtain_auth_token for login
 class AccountAuthToken(ObtainAuthToken):
