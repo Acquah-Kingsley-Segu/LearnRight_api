@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import *
 
-class SubjectSerializer(serializers.ModelSerializer):
+""" class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subject
         fields = '__all__'
@@ -9,6 +9,11 @@ class SubjectSerializer(serializers.ModelSerializer):
 class TopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
+        fields = '__all__' """
+
+class LearningCueSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LearningCue
         fields = '__all__'
 
 class ConceptSerializer(serializers.ModelSerializer):
