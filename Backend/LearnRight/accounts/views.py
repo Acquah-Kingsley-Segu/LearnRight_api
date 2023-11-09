@@ -3,6 +3,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import generics
+from rest_framework.permissions import AllowAny
 from django.contrib.auth.models import User
 from .serializers import UserSerializer
 
@@ -24,13 +25,14 @@ class AccountAuthToken(ObtainAuthToken):
 class SignUpView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [AllowAny]
 
     def create(self, request, *args, **kwargs):
         user = User.objects.filter(username=request.data['username'], email=request.data['email']).values()
         if len(user) > 0:
             return Response({"error": True, "message": "You already have an account. Please Login"})
-        username = User.objects.get(username=request.data['username'])
-        if username:
+        username = User.objects.filter(username=request.data['username']).values()
+        if len(username) > 0:
             return Response({"error": True, "message": "Username is already taken"})
         new_user = User.objects.create_user(username=request.data['username'], email=request.data['email'])
         new_user.set_password(request.data['password'])
