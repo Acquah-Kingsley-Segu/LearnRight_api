@@ -3,13 +3,16 @@ from rest_framework import generics
 from .models import *
 from .serializers import *
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 class SubjectListCreateView(generics.ListCreateAPIView):
     queryset = Subject.objects.all()
     serializer_class = SubjectSerializer
+    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
+        print(request.headers)
         if 'name' not in request.data.keys():
             return Response({'error': True, 'message': f"Name data is missing"})
         subject = Subject.objects.filter(name=request.data['name']).values()
