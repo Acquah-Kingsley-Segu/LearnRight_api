@@ -9,7 +9,6 @@ from rest_framework.permissions import IsAuthenticated
 class SubjectListCreateView(generics.ListCreateAPIView):
     queryset = Subject.objects.all()
     serializer_class = SubjectSerializer
-    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         print(request.headers)
@@ -18,6 +17,7 @@ class SubjectListCreateView(generics.ListCreateAPIView):
         subject = Subject.objects.filter(name=request.data['name']).values()
         if len(subject) > 0:
             return Response({'error': True, 'message': f"Subject with name `{request.data['name']}` already exist"})
+        serializer = SubjectSerializer(data=request.data)
         return Response({'error': False, 'message': "Subject was created successfully"})
 
 class SubjectRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
