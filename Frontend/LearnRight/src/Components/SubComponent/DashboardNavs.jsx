@@ -1,34 +1,62 @@
+import { useEffect, useState } from "react";
 import { GiBookCover, GiNotebook } from "react-icons/gi";
-import { MdAccountCircle, MdNotifications, MdQuiz } from "react-icons/md";
+import { MdAccountCircle, MdQuiz } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import logo from "../../images/logo.png";
 
 const DashboardNavs = () => {
+  const [navState, setNavState] = useState("");
+
+  const navs = [{ name: "learn", link: "/learn" }];
+
+  useEffect(() => {
+    setNavState(window.location.pathname);
+    console.log(navState);
+  }, [navState]);
+
   return (
-    <aside className="w-12 flex flex-col items-center">
-      <p>LR</p>
-      <div className="mt-12">
-        <NavLink className="mb-8 text-2xl text-zinc-400 hover:text-violet-700 hover:cursor-pointer">
-          <GiBookCover className="mb-8" />
-          <p></p>
-        </NavLink>
-        <NavLink className="text-2xl text-zinc-400 hover:text-violet-700 hover:cursor-pointer">
-          <GiNotebook className="mb-8" />
-          <p></p>
-        </NavLink>
-        <NavLink className="mb-8 text-2xl text-zinc-400 hover:text-violet-700 hover:cursor-pointer">
-          <MdQuiz className="mb-8" />
-          <p></p>
-        </NavLink>
-        <NavLink className="text-2xl text-zinc-400 hover:text-violet-700 hover:cursor-pointer">
-          <MdNotifications />
-          <p></p>
-        </NavLink>
+    <aside className="w-1/6 m-1 mr-3 bg-slate-100 flex flex-col border-2 border-solid border-slate-300 rounded-lg">
+      <div className="flex mt-5 py-3 justify-center items-center">
+        <img src={logo} alt="Logo" height={32} width={32} />
+        <p className="font-mono text-sm">LearnRight</p>
       </div>
-      <div className="flex-1 flex flex-col justify-end">
-        <NavLink className="mb-10 text-2xl text-zinc-400 hover:text-violet-700 hover:cursor-pointer">
-          <MdAccountCircle />
-          <p></p>
-        </NavLink>
+      <div className="bg-slate-500 w-5/6 h-px mt-5 ml-4"></div>
+      <div className="flex flex-col justify-between flex-1">
+        <div className="mt-12 flex flex-col pt-5 m-3">
+          <NavLink
+            to={"/dashboard/learn"}
+            className={`flex items-center mb-6 pl-3 py-1 text-zinc-400 hover:cursor-pointer
+            hover:text-white hover:bg-violet-700 hover:rounded-full`}
+          >
+            <GiBookCover className="text-2xl " />
+            <p className="ml-2 text-md pb-1 ">Learn</p>
+          </NavLink>
+          <NavLink
+            to={"/dashboard/note"}
+            className="flex items-center mb-6 pl-3 py-1 text-zinc-400 hover:cursor-pointer 
+            hover:text-white hover:bg-violet-700 hover:rounded-full"
+          >
+            <GiNotebook className="text-2xl" />
+            <p className="ml-3 text-md">Note</p>
+          </NavLink>
+          <NavLink
+            to={"/dashboard/quiz"}
+            className="flex items-center mb-6 pl-3 py-1 text-zinc-400 hover:cursor-pointer
+            hover:text-white hover:bg-violet-700 hover:rounded-full"
+          >
+            <MdQuiz className="text-2xl" />
+            <p className="ml-3 text-md">Quiz</p>
+          </NavLink>
+        </div>
+        <div className="flex flex-col justify-center mb-8">
+          <NavLink className="text-6xl flex justify-center text-zinc-400">
+            <MdAccountCircle />
+          </NavLink>
+          <div className="flex flex-col items-center">
+            <p>Username</p>
+            <p>username@gmail.com</p>
+          </div>
+        </div>
       </div>
     </aside>
   );
