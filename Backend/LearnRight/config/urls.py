@@ -20,5 +20,10 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('learnright/api/v1/auth/', include('accounts.urls')),
-    path('learnright/api/v1/learn/', include('learn.urls'))
+    path('learnright/api/v1/learn/', include('learn.urls')),
+    #path('learnright/api/v1/dj-rest-auth/', include("dj_rest_auth.urls")),
+
+    
 ]
+# path("learnright/api/v1/rest-auth/", include("rest_framework.urls")),
+# path('learnright/api/v1/dj-rest-auth/', include("dj_rest_auth.urls")),
