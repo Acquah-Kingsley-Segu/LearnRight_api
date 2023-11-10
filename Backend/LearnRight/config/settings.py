@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-6z8mcciie1kvj_mp-36!qp#(xho9d+elwp5s^v6uaequ$m7_=s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0"]
 
 
 # Application definition
@@ -41,10 +41,6 @@ INSTALLED_APPS = [
     'learn',
     'rest_framework',
     'rest_framework.authtoken', 
-
-    # by max
-    "corsheaders",
-    "dj_rest_auth",
 ]
 
 REST_FRAMEWORK = {
@@ -140,3 +136,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOWED_ORIGINS = [
+    "0.0.0.0"
+]
