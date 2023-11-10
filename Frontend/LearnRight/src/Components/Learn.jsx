@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { MdDelete, MdEditNote } from "react-icons/md";
 import ReactPaginate from "react-paginate";
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 const Learn = () => {
   const [pageItems, setPageItems] = useState([]);
@@ -149,11 +149,14 @@ const Learn = () => {
           </select>
         </div>
         <div className="mt-5 columns-4 grid gap-5 grid-cols-3">
-          {pageItems.map((note) => (
-            <NavLink className="flex flex-col pl-1 border border-gray-300 rounded-sm pb-2">
+          {pageItems.map((cue) => (
+            <NavLink
+              to={`cue/${cue.id}/pq4r/preview`}
+              className="flex flex-col pl-1 border border-gray-300 rounded-sm pb-2"
+            >
               <div className="flex justify-between items-center pr-3 pt-1">
                 <h5 className="text-ellipsis overflow-hidden text-md font-bold">
-                  Subject: {note.subject}
+                  Subject: {cue.subject}
                 </h5>
                 <div className="flex">
                   <NavLink>
@@ -165,7 +168,7 @@ const Learn = () => {
                 </div>
               </div>
               <div className="flex flex-col justify-between flex-1">
-                <p className="text-sm font-medium">Topic: {note.topic}</p>
+                <p className="text-sm font-medium">Topic: {cue.topic}</p>
               </div>
             </NavLink>
           ))}
@@ -190,7 +193,9 @@ const Learn = () => {
           />
         </div>
       </div>
-      <div></div>
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 };

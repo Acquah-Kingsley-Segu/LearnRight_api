@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { GiBookCover, GiNotebook } from "react-icons/gi";
-import { MdAccountCircle, MdQuiz } from "react-icons/md";
+import { MdAccountCircle, MdQuiz, MdSpaceDashboard } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import logo from "../../images/logo.png";
 
@@ -16,13 +16,24 @@ const DashboardNavs = () => {
 
   return (
     <aside className="w-1/6 m-1 mr-3 bg-slate-100 flex flex-col border-2 border-solid border-slate-300 rounded-lg">
-      <div className="flex mt-5 py-3 justify-center items-center">
+      <NavLink
+        to={"/dashboard/"}
+        className="flex mt-5 py-3 justify-center items-center"
+      >
         <img src={logo} alt="Logo" height={32} width={32} />
         <p className="font-mono text-sm">LearnRight</p>
-      </div>
+      </NavLink>
       <div className="bg-slate-500 w-5/6 h-px mt-5 ml-4"></div>
       <div className="flex flex-col justify-between flex-1">
         <div className="mt-12 flex flex-col pt-5 m-3">
+          <NavLink
+            to={"/dashboard/"}
+            className={`flex items-center mb-6 pl-3 py-1 text-zinc-400 hover:cursor-pointer
+            hover:text-white hover:bg-violet-700 hover:rounded-full`}
+          >
+            <MdSpaceDashboard className="text-2xl " />
+            <p className="ml-2 text-md pb-1 ">Dashboard</p>
+          </NavLink>
           <NavLink
             to={"/dashboard/learn"}
             className={`flex items-center mb-6 pl-3 py-1 text-zinc-400 hover:cursor-pointer
